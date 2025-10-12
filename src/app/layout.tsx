@@ -1,17 +1,8 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+
 import "./globals.css";
 import Navbar from "./components/Layout/Navbar";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "Mehefuj Ali - Full Stack Developer | Professional Portfolio",
@@ -35,12 +26,12 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased font-sans`}
+        className={` antialiased font-sans`}
       >
         <Navbar />
-        <div className="pt-28 pb-24">
+        <main>
           {children}
-        </div>
+        </main>
       </body>
     </html>
   );
