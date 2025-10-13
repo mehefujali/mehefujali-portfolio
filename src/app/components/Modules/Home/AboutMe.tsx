@@ -70,7 +70,7 @@ const AboutMe = () => {
                             alt="Mehefuj Ali"
                             height={400}
                             width={400}
-                            className="rounded-lg shadow-blue-500/20 w-full h-auto"
+                            className="rounded-full border-2 border-blue-700/35 shadow-blue-500/20 w-full h-auto"
                         />
                     </div>
 
