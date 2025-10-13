@@ -1,13 +1,67 @@
 import type { Metadata } from "next";
-
+import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Layout/Navbar";
 import Footer from "./components/Layout/Footer";
 
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Mehefuj Ali - Full Stack Developer | Professional Portfolio",
-  description: "Crafting modern, scalable web applications with a focus on clean code and exceptional user experiences.",
+  metadataBase: new URL('https://your-portfolio-domain.com'),
+  title: {
+    default: "Mehefuj Ali | Full Stack Developer & MERN Stack Expert",
+    template: "%s | Mehefuj Ali"
+  },
+  description: "Mehefuj Ali is a passionate Full Stack Developer specializing in MERN stack, Next.js, and modern web technologies. Explore his projects, skills, and work experience.",
+  keywords: ["Mehefuj Ali", "Full Stack Developer", "MERN Stack", "React", "Next.js", "Node.js", "Express.js", "MongoDB", "TypeScript", "Web Developer", "Portfolio", "Software Engineer", "Frontend", "Backend"],
+  authors: [{ name: "Mehefuj Ali" }],
+  creator: "Mehefuj Ali",
+  publisher: "Mehefuj Ali",
+  alternates: {
+    canonical: "https://www.mehefujali.com",
+  },
+  openGraph: {
+    title: "Mehefuj Ali | Full Stack Developer",
+    description: "Mehefuj Ali's personal portfolio showcasing his expertise in MERN stack, Next.js, and full-stack web development.",
+    url: "https://www.mehefujali.com",
+    siteName: "Mehefuj Ali Portfolio",
+    images: [
+      {
+        url: "/about-me.png",
+        width: 800,
+        height: 600,
+        alt: "Mehefuj Ali - Full Stack Developer",
+      },
+      {
+        url: "/about-me.png",
+        width: 1800,
+        height: 1600,
+        alt: "Mehefuj Ali - Full Stack Developer",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Mehefuj Ali | Full Stack Developer",
+    description: "Explore the portfolio of Mehefuj Ali, a MERN Stack and Next.js expert.",
+    creator: "@mehefujali",
+    images: ["https://www.mehefujali.com/about-me.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    nocache: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      noimageindex: false,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 };
 
 export default function RootLayout({
@@ -16,23 +70,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <head>
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-          integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-          crossOrigin="anonymous"
-          referrerPolicy="no-referrer"
-        />
-      </head>
-      <body
-        className={` antialiased font-sans bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 `}
-      >
+    <html lang="en" className="!scroll-smooth">
+      <body className={`${inter.className} bg-black text-white relative`}>
         <Navbar />
-        <main>
-          {children}
-        </main>
+        {children}
         <Footer />
       </body>
     </html>
