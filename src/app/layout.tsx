@@ -26,7 +26,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={` antialiased font-sans`}
+        className={` antialiased font-sans bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 `}
       >
         <Navbar />
         <main>

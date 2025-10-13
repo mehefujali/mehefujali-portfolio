@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  --background: 222.2 84% 4.9%;
+  --background: 224, 40%, 11%; /* Fallback, but the body tag will override this */
   --foreground: 210 40% 98%;
   --card: 222.2 84% 4.9%;
   --card-foreground: 210 40% 98%;
@@ -27,7 +27,8 @@
 }
 
 body {
-  background-color: hsl(var(--background));
+  /* background-color: hsl(var(--background)); */ /* This is commented out */
+  background-color: #111728; /* Your desired background color */
   color: hsl(var(--foreground));
   border-color: hsl(var(--border));
 }
@@ -41,7 +42,8 @@ body {
 
 .btn-gradient-border {
     position: relative;
-    background: hsl(var(--background));
+    /* background: hsl(var(--background)); */ /* This is commented out */
+    background: #111728; /* Matching the body background */
     border: 1px solid transparent;
     background-clip: padding-box;
     border-radius: 9999px;
