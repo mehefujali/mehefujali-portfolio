@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import React, { useState, useEffect } from 'react';
 import { IconExternalLink, IconBrandGithub } from '@tabler/icons-react';
@@ -6,16 +6,16 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation } from 'swiper/modules';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import api from '@/services/api'; // <-- IMPORT API SERVICE
+import api from '@/services/api';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
 
 interface Project {
-    _id: string;
+    id: string;
     title: string;
     description: string;
-    imageUrl: string; // Updated from 'image'
+    imageUrl: string;
     technologies: string[];
     liveLink?: string;
     clientRepo?: string;
@@ -23,9 +23,16 @@ interface Project {
 }
 
 const ProjectCard = ({ project }: { project: Project }) => {
-    // Card component remains the same...
     return (
-        <div className="card-ui flex h-full flex-col group">
+        <div className="card-ui flex h-full flex-col group" style={{
+            backgroundColor: 'rgba(15, 23, 42, 0.8)',
+            border: '1px solid #1e293b',
+            borderRadius: '1.25rem',
+            transition: 'transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease',
+            position: 'relative',
+            overflow: 'hidden',
+            backdropFilter: 'blur(8px)',
+        }}>
             <div className="h-52 overflow-hidden rounded-t-2xl relative">
                 <Image
                     fill
@@ -50,7 +57,8 @@ const ProjectCard = ({ project }: { project: Project }) => {
                 </div>
                 <div className="mt-auto flex items-center space-x-4 text-sm font-semibold">
                     {project.liveLink && <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="brand-text flex items-center gap-1.5 hover:underline"><IconExternalLink size={16} /> Live Site</a>}
-                    {project.clientRepo && <a href={project.clientRepo} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-slate-400 transition hover:text-white"><IconBrandGithub size={16} /> GitHub</a>}
+                    {project.clientRepo && <a href={project.clientRepo} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-slate-400 transition hover:text-white"><IconBrandGithub size={16} /> Client</a>}
+                    {project.serverRepo && <a href={project.serverRepo} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-slate-400 transition hover:text-white"><IconBrandGithub size={16} /> Server</a>}
                 </div>
             </div>
         </div>
@@ -66,7 +74,6 @@ export default function Projects() {
     useEffect(() => {
         async function fetchProjects() {
             try {
-                // Use the new API service to fetch projects
                 const response = await api.get('/projects');
                 if (response.data.success) {
                     setProjects(response.data.data);
@@ -75,6 +82,7 @@ export default function Projects() {
                 }
             } catch (err) {
                 setError(err instanceof Error ? err.message : "An unknown error occurred.");
+                console.error("Error fetching projects:", err);
             } finally {
                 setLoading(false);
             }
@@ -93,9 +101,9 @@ export default function Projects() {
                 </h2>
 
                 {loading && <p className="text-center text-xl text-slate-400">Loading projects...</p>}
-                {error && <p className="text-center text-red-500">Error loading projects. Please try again later.</p>}
+                {error && <p className="text-center text-red-500">Error: Could not load projects. Please try again later.</p>}
 
-                {!loading && !error && (
+                {!loading && !error && projects.length > 0 && (
                     <motion.div
                         initial={{ opacity: 0, y: 50 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -104,7 +112,7 @@ export default function Projects() {
                     >
                         <Swiper
                             modules={[Autoplay, Navigation]}
-                            loop={projects.length > 2} // Loop only if there are enough slides
+                            loop={projects.length > 2}
                             autoplay={{ delay: 3000, disableOnInteraction: false, pauseOnMouseEnter: true }}
                             slidesPerView={1}
                             spaceBetween={30}
@@ -116,12 +124,15 @@ export default function Projects() {
                             className="w-full py-4"
                         >
                             {projects.map((project) => (
-                                <SwiperSlide key={project._id} className="h-auto">
+                                <SwiperSlide key={project.id} className="h-auto">
                                     <ProjectCard project={project} />
                                 </SwiperSlide>
                             ))}
                         </Swiper>
                     </motion.div>
+                )}
+                {!loading && !error && projects.length === 0 && (
+                    <p className="text-center text-slate-400">No projects to display yet.</p>
                 )}
             </div>
         </section>
