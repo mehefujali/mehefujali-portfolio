@@ -4,96 +4,96 @@ import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-import NameSvg from "./NameSvg";
+import { IconAward, IconCode, IconUsers } from "@tabler/icons-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const AboutMe = () => {
-    const imageRef = useRef(null);
-    const textRef = useRef(null);
+    const sectionRef = useRef(null);
 
+    // GSAP Animation Effect for a smooth reveal
     useEffect(() => {
-        if (typeof window === "undefined") return;
-
-        // Image animation
+        const elements = gsap.utils.toArray(".about-reveal");
         gsap.fromTo(
-            imageRef.current,
+            elements,
             { y: 100, opacity: 0 },
             {
                 y: 0,
                 opacity: 1,
-                duration: 1.2,
+                duration: 1,
+                stagger: 0.2,
+                ease: "power3.out",
                 scrollTrigger: {
-                    trigger: imageRef.current,
-                    start: "top 80%",
-                    end: "top 40%",
-                    scrub: true,
-                },
-            }
-        );
-
-        // Text animation
-        gsap.fromTo(
-            textRef.current,
-            { y: 100, opacity: 0 },
-            {
-                y: 0,
-                opacity: 1,
-                duration: 1.2,
-                scrollTrigger: {
-                    trigger: textRef.current,
-                    start: "top 80%",
-                    end: "top 40%",
-                    scrub: true,
+                    trigger: sectionRef.current,
+                    start: "top 70%",
+                    toggleActions: "play none none none",
                 },
             }
         );
     }, []);
 
     return (
-        <div className="w-full relative py-20 md:py-32" id="about">
-            <div className="absolute top-0 left-0 w-full h-full opacity-30">
-                <div className="w-full h-full blur-3xl bg-gradient-to-tr from-purple-900/50 via-blue-900/50 to-transparent"></div>
-            </div>
+        <section id="about" ref={sectionRef} className="relative w-full overflow-hidden bg-black py-20 md:py-32">
+            {/* Background consistent with other sections */}
+            <div className="absolute inset-0 h-full w-full bg-black bg-grid-white/[0.05]" />
+            <div className="absolute inset-0 h-full w-full bg-gradient-to-t from-black via-black/80 to-transparent pointer-events-none" />
 
-            <div className="container mx-auto z-10 relative px-4">
-                <h1 className="relative my-6 z-10 text-2xl text-center md:text-3xl bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-400 font-sans font-bold">
-                    About Me
-                </h1>
+            <div className="container relative z-10 mx-auto px-4">
+                {/* Section Title */}
+                <h2 className="about-reveal text-center text-4xl font-bold lg:text-5xl">
+                    About <span className="brand-text">Me</span>
+                </h2>
 
-                <div className="flex flex-col md:flex-row items-center justify-center w-full max-w-5xl mx-auto gap-8 md:gap-16 mt-12">
+                {/* Main Content Card - Blends with the design */}
+                <div className="about-reveal mx-auto mt-16 max-w-5xl rounded-3xl border border-slate-800 bg-slate-900/40 p-8 backdrop-blur-md">
+                    <div className="flex flex-col items-center gap-12 md:flex-row md:gap-8">
 
-                    <div className="w-full md:w-1/3 about-image" ref={imageRef}>
-                        <Image
-                            src="/about-me.png"
-                            alt="Mehefuj Ali"
-                            height={400}
-                            width={400}
-                            className="rounded-full border-2 border-blue-700/35 shadow-blue-500/20 w-full h-auto"
-                        />
-                    </div>
+                        {/* Image with a new animated gradient border */}
+                        <div className="relative w-64 flex-shrink-0 md:w-1/3">
+                            <div className="absolute -inset-1.5 animate-[spin_6s_linear_infinite] rounded-full bg-[conic-gradient(from_90deg_at_50%_50%,#3b82f6_0%,#a855f7_50%,#3b82f6_100%)]" />
+                            <Image
+                                src="/about-me.png"
+                                alt="Mehefuj Ali"
+                                height={400}
+                                width={400}
+                                className="relative z-10 h-full w-full rounded-full border-4 border-slate-900 object-cover"
+                            />
+                        </div>
 
+                        {/* Text Content */}
+                        <div className="flex-grow space-y-4 text-left text-slate-300">
+                            <h3 className="text-3xl font-bold text-white">
+                                Hello! I&apos;m <span className="brand-text">Mehefuj Ali</span>
+                            </h3>
+                            <p className="leading-relaxed">
+                                A passionate Full-Stack Developer from West Bengal, India. My expertise lies in building modern,
+                                scalable, and responsive web applications. I am proficient in the entire MERN stack
+                                and enjoy turning complex problems into clean, efficient, and elegant code.
+                            </p>
+                            <p className="leading-relaxed">
+                                I thrive on challenges and am always eager to learn new technologies to create seamless digital experiences that provide an exceptional user experience.
+                            </p>
 
-                    <div className="max-w-lg space-y-4 text-neutral-300 text-left md:w-2/3 about-text" ref={textRef}>
-
-                        <NameSvg />
-
-                        <p>
-                            A passionate Full-Stack Developer from West Bengal, India. My expertise lies in building modern,
-                            scalable, and responsive web applications from scratch. I am proficient in the entire MERN stack
-                            (MongoDB, Express.js, React.js, Node.js) and enjoy turning complex problems into clean, efficient,
-                            and elegant code.
-                        </p>
-                        <p>
-                            I thrive on challenges and am always eager to learn new technologies to enhance my skills. My goal
-                            is to create seamless digital experiences that are not only functional but also provide an exceptional
-                            user experience. Let&apos;s connect and build something amazing together!
-                        </p>
+                            {/* Key Strengths Section with Icons */}
+                            <div className="flex flex-col space-y-3 pt-4 sm:flex-row sm:space-x-6 sm:space-y-0">
+                                <div className="flex items-center gap-3">
+                                    <IconCode className="h-6 w-6 text-blue-400" />
+                                    <span className="font-medium">Clean & Efficient Code</span>
+                                </div>
+                                <div className="flex items-center gap-3">
+                                    <IconAward className="h-6 w-6 text-purple-400" />
+                                    <span className="font-medium">Problem Solving</span>
+                                </div>
+                                <div className="flex items-center gap-3">
+                                    <IconUsers className="h-6 w-6 text-blue-400" />
+                                    <span className="font-medium">Team Collaboration</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
     );
 };
 

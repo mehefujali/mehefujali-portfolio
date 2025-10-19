@@ -7,61 +7,7 @@ import Footer from "./components/Layout/Footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://your-portfolio-domain.com'),
-  title: {
-    default: "Mehefuj Ali | Full Stack Developer & MERN Stack Expert",
-    template: "%s | Mehefuj Ali"
-  },
-  description: "Mehefuj Ali is a passionate Full Stack Developer specializing in MERN stack, Next.js, and modern web technologies. Explore his projects, skills, and work experience.",
-  keywords: ["Mehefuj Ali", "Full Stack Developer", "MERN Stack", "React", "Next.js", "Node.js", "Express.js", "MongoDB", "TypeScript", "Web Developer", "Portfolio", "Software Engineer", "Frontend", "Backend"],
-  authors: [{ name: "Mehefuj Ali" }],
-  creator: "Mehefuj Ali",
-  publisher: "Mehefuj Ali",
-  alternates: {
-    canonical: "https://www.mehefujali.com",
-  },
-  openGraph: {
-    title: "Mehefuj Ali | Full Stack Developer",
-    description: "Mehefuj Ali's personal portfolio showcasing his expertise in MERN stack, Next.js, and full-stack web development.",
-    url: "https://www.mehefujali.com",
-    siteName: "Mehefuj Ali Portfolio",
-    images: [
-      {
-        url: "/about-me.png",
-        width: 800,
-        height: 600,
-        alt: "Mehefuj Ali - Full Stack Developer",
-      },
-      {
-        url: "/about-me.png",
-        width: 1800,
-        height: 1600,
-        alt: "Mehefuj Ali - Full Stack Developer",
-      },
-    ],
-    locale: "en_US",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Mehefuj Ali | Full Stack Developer",
-    description: "Explore the portfolio of Mehefuj Ali, a MERN Stack and Next.js expert.",
-    creator: "@mehefujali",
-    images: ["https://www.mehefujali.com/about-me.png"],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    nocache: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      noimageindex: false,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
+  // ... apnar metadata
 };
 
 export default function RootLayout({
@@ -71,9 +17,22 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="!scroll-smooth">
+      <head>
+        {/* === Font Awesome CDN for Icons === */}
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+          integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+          crossOrigin="anonymous"
+          referrerPolicy="no-referrer"
+        />
+      </head>
       <body className={`${inter.className} bg-black text-white relative`}>
         <Navbar />
-        {children}
+        {/* Hero Section er por theke baki content navbar er niche jabe na */}
+        <main>
+          {children}
+        </main>
         <Footer />
       </body>
     </html>
