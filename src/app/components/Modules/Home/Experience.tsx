@@ -4,11 +4,12 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { IconBuildingSkyscraper } from '@tabler/icons-react';
 
+// === UPDATED EXPERIENCE ORDER ===
 const experienceData = [
     {
         title: "MERN Stack Developer",
         company: "Inforoot Solution",
-        date: "April 2024 – September 2024",
+        date: "April 2025 – September 2025",
         responsibilities: [
             "Developed and maintained full-stack web applications using the MERN stack.",
             "Implemented responsive UI with React.js and Tailwind CSS for optimal user experience.",
@@ -19,7 +20,7 @@ const experienceData = [
     {
         title: "Full Stack Internship",
         company: "Time Digitals",
-        date: "January 2024 – April 2024", // === UPDATED DATE ===
+        date: "January 2025 – April 2025",
         responsibilities: [
             "Assisted in the development of a client's web application using React.js and Node.js.",
             "Learned and applied modern web development practices in a professional environment.",
@@ -68,7 +69,6 @@ const ExperienceCard = ({ experience }: { experience: typeof experienceData[0] }
 
 export default function Experience() {
     return (
-        // === overflow-hidden ADD KORA HOYECHE RESPONSIVE FIX ER JONNO ===
         <section id="experience" className="w-full relative py-20 md:py-32 bg-black overflow-hidden">
             {/* Consistent background */}
             <div className="absolute inset-0 h-full w-full bg-black bg-grid-white/[0.05]" />
@@ -81,7 +81,6 @@ export default function Experience() {
                 </h2>
 
                 <div className="max-w-3xl mx-auto">
-                    {/* Data is mapped to show the most recent experience first */}
                     {experienceData.map((exp, index) => (
                         <ExperienceCard key={index} experience={exp} />
                     ))}
