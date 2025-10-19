@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
-
+import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Layout/Navbar";
 import Footer from "./components/Layout/Footer";
 
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Mehefuj Ali - Full Stack Developer | Professional Portfolio",
-  description: "Crafting modern, scalable web applications with a focus on clean code and exceptional user experiences.",
+  // ... apnar metadata
 };
 
 export default function RootLayout({
@@ -16,8 +16,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="!scroll-smooth">
       <head>
+        {/* === Font Awesome CDN for Icons === */}
         <link
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
@@ -26,10 +27,9 @@ export default function RootLayout({
           referrerPolicy="no-referrer"
         />
       </head>
-      <body
-        className={` antialiased font-sans bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 `}
-      >
+      <body className={`${inter.className} bg-black text-white relative`}>
         <Navbar />
+        {/* Hero Section er por theke baki content navbar er niche jabe na */}
         <main>
           {children}
         </main>

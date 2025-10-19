@@ -11,7 +11,7 @@ export const BentoGrid = ({
     return (
         <div
             className={cn(
-                "grid md:auto-rows-[18rem] grid-cols-1 md:grid-cols-3 gap-4 max-w-7xl mx-auto ",
+                "grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto",
                 className
             )}
         >
@@ -25,14 +25,12 @@ export const BentoGridItem = ({
     title,
     description,
     header,
-    icon,
     skills,
 }: {
     className?: string;
     title?: string | React.ReactNode;
     description?: string | React.ReactNode;
     header?: React.ReactNode;
-    icon?: React.ReactNode;
     skills?: string[];
 }) => {
     return (
@@ -42,21 +40,24 @@ export const BentoGridItem = ({
             transition={{ duration: 0.5, ease: "easeOut" }}
             viewport={{ once: true }}
             className={cn(
-                "row-span-1 rounded-xl group/bento hover:shadow-xl transition duration-200 shadow-input dark:shadow-none p-4 dark:bg-black dark:border-white/[0.2] bg-white border border-transparent justify-between flex flex-col space-y-4",
+                "row-span-1 card-ui group/bento flex flex-col justify-between p-5",
                 className
             )}
         >
-            {header}
-            <div className="group-hover/bento:translate-x-2 transition duration-200 space-y-2">
-                <div className="font-sans font-bold text-neutral-200 text-xl">
-                    {title}
-                </div>
-                <div className="font-sans font-normal text-neutral-400 text-sm">
+            {/* Header with Icon */}
+            <div className="flex justify-center items-center mb-4 min-h-[8rem]">
+                {header}
+            </div>
+
+            {/* Title, Description, and Skills */}
+            <div className="transition duration-200 space-y-3">
+                <h3 className="font-bold text-xl text-slate-50">{title}</h3>
+                <p className="font-normal text-sm text-slate-400 leading-relaxed">
                     {description}
-                </div>
+                </p>
                 <div className="flex flex-wrap gap-2 pt-2">
                     {skills?.map((skill, index) => (
-                        <span key={index} className="bg-gradient-to-r from-gray-700/50 to-gray-800/50 border border-gray-600/50 text-gray-300 text-xs font-medium px-3 py-1.5 rounded-full hover:bg-gray-700 transition-colors duration-200 cursor-default">
+                        <span key={index} className="bg-slate-800/80 border border-slate-700 text-slate-300 text-xs font-medium px-3 py-1.5 rounded-full transition-colors duration-200 cursor-default">
                             {skill}
                         </span>
                     ))}
