@@ -4,7 +4,6 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { IconBuildingSkyscraper } from '@tabler/icons-react';
 
-// === UPDATED EXPERIENCE DATA ===
 const experienceData = [
     {
         title: "MERN Stack Developer",
@@ -20,7 +19,7 @@ const experienceData = [
     {
         title: "Full Stack Internship",
         company: "Time Digitals",
-        date: "February 2024 – April 2024",
+        date: "January 2024 – April 2024", // === UPDATED DATE ===
         responsibilities: [
             "Assisted in the development of a client's web application using React.js and Node.js.",
             "Learned and applied modern web development practices in a professional environment.",
@@ -69,7 +68,8 @@ const ExperienceCard = ({ experience }: { experience: typeof experienceData[0] }
 
 export default function Experience() {
     return (
-        <section id="experience" className="w-full relative py-20 md:py-32 bg-black">
+        // === overflow-hidden ADD KORA HOYECHE RESPONSIVE FIX ER JONNO ===
+        <section id="experience" className="w-full relative py-20 md:py-32 bg-black overflow-hidden">
             {/* Consistent background */}
             <div className="absolute inset-0 h-full w-full bg-black bg-grid-white/[0.05]" />
             <div className="absolute inset-0 h-full w-full bg-gradient-to-t from-black via-black/90 to-transparent pointer-events-none" />
@@ -81,8 +81,8 @@ export default function Experience() {
                 </h2>
 
                 <div className="max-w-3xl mx-auto">
-                    {/* Data is mapped and reversed to show the most recent experience first */}
-                    {[...experienceData].reverse().map((exp, index) => (
+                    {/* Data is mapped to show the most recent experience first */}
+                    {experienceData.map((exp, index) => (
                         <ExperienceCard key={index} experience={exp} />
                     ))}
                 </div>
